@@ -75,51 +75,53 @@ nav ul li {
   padding: 20px 16px;
 }
 
-#hero h2 {
+#hero-content h2 {
   font-size: 1.5rem;
   font-weight: 800;
   color: #1a1a1a;
   margin: 0 0 16px 0;
 }
 
+/* hero-card */
 #hero-card {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  position: relative;
+}
+
+#delorean-img {
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  display: block;
+}
+
+#hero-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
 }
 
 #car-name {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #0057a8;
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
 }
 
 #car-features {
   list-style: none;
   padding: 0;
-  margin: 0 0 14px 0;
+  margin: 0 0 10px 0;
 }
 
 #car-features li {
   color: #0057a8;
-  font-size: 0.95rem;
-  padding: 2px 0;
-}
-
-#own-today-btn {
-  display: inline-block;
-  background-color: #1a1a1a;
-  color: #ffffff;
-  padding: 10px 20px;
-  text-decoration: none;
-  font-weight: 700;
   font-size: 0.9rem;
+  padding: 1px 0;
 }
 
-#hero-card img {
-  width: 100%;
-  max-width: 440px;
+#hero-text img {
+  width: 100px;
   height: auto;
   display: block;
 }
@@ -130,6 +132,16 @@ nav ul li {
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+/* Reviews */
+#reviews {
+  order: 1;
+}
+
+/* Upgrades */
+#upgrades {
+  order: 2;
 }
 
 /******* Upgrades and Reviews Headings ***************/
@@ -199,22 +211,57 @@ footer {
 /******* Media Query - Large Screens ***************/
 @media screen and (min-width: 768px) {
 
-  #hero-card {
-    flex-direction: row;
-    align-items: center;
+  /* Hero background */
+  #hero {
+    background-image: url('/images/site/small_check.jpg');
+    background-repeat: repeat;
+    background-color: #e8f0fb;
+    padding: 30px;
   }
 
+  /* Hero content */
+  #hero-content {
+    background-color: #ffffff;
+    border: 3px solid #00bcd4;
+    padding: 20px;
+    max-width: 700px;
+  }
+
+  /* hero-card */
+  #hero-card {
+    position: relative;
+  }
+
+  #delorean-img {
+    max-width: 500px;
+    margin-left: auto;
+    display: block;
+  }
+
+  #hero-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    width: 200px;
+  }
+
+  /* Home content*/
   #home-content {
     flex-direction: row;
     align-items: flex-start;
     padding: 30px;
   }
 
+  /* Upgrades */
   #upgrades {
     flex: 1;
+    order: 1;
   }
 
+  /* Reviews */
   #reviews {
     flex: 1;
+    order: 2;
   }
 }
