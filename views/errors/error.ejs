@@ -1,0 +1,58 @@
+<!-- Page Heading -->
+<% if (title) { %>
+    <h1 class="error-title">
+        <%= title %>
+    </h1>
+    <% } else { %>
+        <h1 class="error-title">Server Error</h1>
+        <% } %>
+
+<!-- Lego Error Section -->
+<div id="error-container">
+
+    <!-- Lego figure made with CSS/HTML characters -->
+    <div id="lego-figure" aria-hidden="true">
+        <div class="lego-head">
+            <div class="lego-stud"></div>
+            <div class="lego-face">
+                <span class="lego-eye left"></span>
+                <span class="lego-eye right"></span>
+                <span class="lego-mouth">‿</span>
+            </div>
+        </div>
+        <div class="lego-body">
+            <div class="lego-arm left-arm"></div>
+            <div class="lego-torso">
+                <span class="lego-badge">!</span>
+            </div>
+            <div class="lego-arm right-arm"></div>
+        </div>
+        <div class="lego-legs">
+            <div class="lego-leg left-leg"></div>
+            <div class="lego-leg right-leg"></div>
+        </div>
+    </div>
+
+    <!-- Error Message Block -->
+    <div id="error-message-block">
+        <p class="error-tagline">
+            🧱 Uh-oh! A Lego brick got stuck in the engine.
+        </p>
+        <p class="error-tagline secondary">
+            Our minifigure technicians are on the case — but first, here is what went wrong:
+        </p>
+
+        <!-- Message from the render function (unescaped) -->
+        <div class="error-detail">
+            <%- message %>
+        </div>
+
+        <p class="error-note">
+            💡 Pro tip: Even Lego sets come with wrong pieces sometimes.
+            Try going back or heading home — we promise it is mostly assembled correctly.
+        </p>
+
+        <a href="/" class="error-home-btn">🏠 Take me home</a>
+    </div>
+
+</div>
