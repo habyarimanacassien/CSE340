@@ -15,8 +15,9 @@ body {
 body {
   font-family: Arial, sans-serif;
   font-size: 16px;
-  background-color: #f4f4f4;
+  background-color: #f0f2f5;
   color: #1a1a1a;
+  line-height: 1.6;
 }
 
 /******* Wrapper ***************/
@@ -24,6 +25,7 @@ body {
   max-width: 1100px;
   margin: 0 auto;
   background-color: #ffffff;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.10);
 }
 
 /******* Header ***************/
@@ -31,22 +33,38 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
+  padding: 14px 20px;
   background-color: #ffffff;
-  border-bottom: 2px solid #1a1a1a;
+  border-bottom: 3px solid #0057a8;
 }
 
 .siteName a {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #1a1a1a;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #0057a8;
   text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+
+.siteName a:hover {
+  color: #003d78;
 }
 
 #tools a {
-  font-size: 0.85rem;
-  color: #1a1a1a;
+  font-size: 0.88rem;
+  color: #0057a8;
   text-decoration: none;
+  font-weight: 600;
+  border: 2px solid #0057a8;
+  padding: 6px 14px;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#tools a:hover {
+  background-color: #0057a8;
+  color: #ffffff;
 }
 
 /******* Navigation ***************/
@@ -59,14 +77,54 @@ nav ul {
   margin: 0;
   padding: 0;
   display: flex;
+  flex-wrap: wrap;
 }
 
 nav ul li {
   flex: 1;
   text-align: center;
-  padding: 10px 8px;
+}
+
+nav ul li a {
+  display: block;
+  padding: 12px 8px;
   color: #ffffff;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+nav ul li a:hover {
+  background-color: #0057a8;
+  color: #ffffff;
+}
+
+/******* Main Content Area ***************/
+main {
+  min-height: 60vh;
+  padding: 0;
+}
+
+/******* Page Heading h1 (Classification View) ***************/
+main h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0057a8;
+  margin: 0;
+  padding: 24px 24px 10px 24px;
+  border-bottom: 2px solid #e0e7ef;
+}
+
+/******* Notice / Error Message ***************/
+p.notice {
+  background-color: #fff3cd;
+  border-left: 4px solid #f0a500;
+  color: #7a5700;
+  padding: 14px 20px;
+  margin: 24px;
+  border-radius: 4px;
+  font-size: 0.97rem;
 }
 
 /******* Hero Section ***************/
@@ -82,7 +140,6 @@ nav ul li {
   margin: 0 0 16px 0;
 }
 
-/* hero-card */
 #hero-card {
   position: relative;
 }
@@ -92,6 +149,7 @@ nav ul li {
   max-width: 440px;
   height: auto;
   display: block;
+  border-radius: 4px;
 }
 
 #hero-text {
@@ -116,8 +174,9 @@ nav ul li {
 
 #car-features li {
   color: #0057a8;
-  font-size: 0.9rem;
-  padding: 1px 0;
+  font-size: 0.88rem;
+  padding: 2px 0;
+  font-weight: 600;
 }
 
 #hero-text img {
@@ -128,29 +187,54 @@ nav ul li {
 
 /******* Home Content ***************/
 #home-content {
-  padding: 20px 16px;
+  padding: 24px 16px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 28px;
 }
 
-/* Reviews */
+/******* Reviews ***************/
 #reviews {
   order: 1;
 }
 
-/* Upgrades */
-#upgrades {
-  order: 2;
-}
-
-/******* Upgrades and Reviews Headings ***************/
-#upgrades h2,
 #reviews h2 {
   font-size: 1.2rem;
   font-weight: 700;
   color: #1a1a1a;
   margin: 0 0 14px 0;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #0057a8;
+}
+
+#review-list {
+  padding-left: 20px;
+  margin: 0;
+}
+
+#review-list li {
+  padding: 7px 0;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #e8e8e8;
+  color: #333;
+}
+
+#review-list li:last-child {
+  border-bottom: none;
+}
+
+/******* Upgrades ***************/
+#upgrades {
+  order: 2;
+}
+
+#upgrades h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 14px 0;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #0057a8;
 }
 
 /******* Upgrade Grid ***************/
@@ -165,53 +249,135 @@ nav ul li {
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  background-color: #cce0ff;
-  padding: 10px;
+  background-color: #dceeff;
+  padding: 14px 10px;
+  border-radius: 6px;
+  border: 1px solid #b3d0f0;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.upgrade-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 87, 168, 0.15);
+  background-color: #c2deff;
 }
 
 .upgrade-item img {
   width: 80px;
   height: 80px;
   object-fit: contain;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .upgrade-item p {
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   color: #0057a8;
   margin: 0;
   text-align: center;
 }
 
-/******* Reviews ***************/
-#review-list {
-  padding-left: 20px;
-  margin: 0;
+/******* Inventory Grid (Classification View) ***************/
+#inv-display {
+  list-style: none;
+  margin: 20px 24px 30px 24px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
 }
 
-#review-list li {
-  padding: 6px 0;
+#inv-display li {
+  background-color: #f7faff;
+  border: 1px solid #d0e3f7;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+#inv-display li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 87, 168, 0.13);
+}
+
+#inv-display li a img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.2s;
+}
+
+#inv-display li a img:hover {
+  opacity: 0.88;
+}
+
+/******* namePrice div inside each inventory card ***************/
+.namePrice {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.namePrice hr {
+  border: none;
+  border-top: 1px solid #d0e3f7;
+  margin: 0 0 8px 0;
+}
+
+.namePrice h2 {
   font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.namePrice h2 a {
+  color: #0057a8;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.namePrice h2 a:hover {
+  color: #003d78;
+  text-decoration: underline;
+}
+
+.namePrice span {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a7a1a;
 }
 
 /******* Footer ***************/
 footer {
   background-color: #1a1a1a;
-  padding: 14px 16px;
+  padding: 16px 20px;
   text-align: center;
 }
 
 .copyright {
-  color: #ffffff;
+  color: #cccccc;
   font-size: 0.85rem;
   margin: 0;
 }
 
-/******* Media Query - Large Screens ***************/
+/******* Media Query - Large Screens (768px+) ***************/
 @media screen and (min-width: 768px) {
 
-  /* Hero background */
+  #top-header {
+    padding: 16px 30px;
+  }
+
+  nav ul li a {
+    font-size: 0.97rem;
+    padding: 13px 12px;
+  }
+
   #hero {
     background-image: url('/images/site/small_check.jpg');
     background-repeat: repeat;
@@ -219,15 +385,14 @@ footer {
     padding: 30px;
   }
 
-  /* Hero content */
   #hero-content {
     background-color: #ffffff;
-    border: 3px solid #00bcd4;
-    padding: 20px;
-    max-width: 700px;
+    border: 3px solid #0057a8;
+    padding: 24px;
+    max-width: 720px;
+    border-radius: 6px;
   }
 
-  /* hero-card */
   #hero-card {
     position: relative;
   }
@@ -246,22 +411,43 @@ footer {
     width: 200px;
   }
 
-  /* Home content*/
   #home-content {
     flex-direction: row;
     align-items: flex-start;
     padding: 30px;
   }
 
-  /* Upgrades */
   #upgrades {
     flex: 1;
     order: 1;
   }
 
-  /* Reviews */
   #reviews {
     flex: 1;
     order: 2;
+  }
+
+  #inv-display {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    margin: 24px 30px 36px 30px;
+    gap: 24px;
+  }
+
+  main h1 {
+    padding: 28px 30px 12px 30px;
+    font-size: 1.8rem;
+  }
+}
+
+/******* Media Query - Extra Large Screens (1024px+) ***************/
+@media screen and (min-width: 1024px) {
+
+  #inv-display {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+
+  .upgrade-item img {
+    width: 90px;
+    height: 90px;
   }
 }
