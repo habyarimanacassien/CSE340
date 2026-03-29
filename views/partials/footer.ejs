@@ -1,5 +1,8 @@
-<% const d=new Date() 
+<% const d=new Date()
 let year=d.getFullYear() %>
     <footer>
         <p class="copyright">&copy; <%= year %>, CSE 340 App</p>
+        <p class="footer-error-link">
+            <a href="/inv/error" title="Trigger a server error">Trigger Server Error</a>
+        </p>
     </footer>
