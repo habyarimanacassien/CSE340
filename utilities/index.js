@@ -58,7 +58,7 @@ Util.buildClassificationGrid = async function(data){
 }
 
 /* **************************************
-* Build the vehicle detail view HTML  (Task 1)
+* Build the vehicle detail view HTML
 * ************************************ */
 Util.buildVehicleDetail = function(data) {
   const price = new Intl.NumberFormat('en-US', {
@@ -95,6 +95,122 @@ Util.buildVehicleDetail = function(data) {
       </div>
     </div>
   `
+}
+
+/* ****************************************
+ * Build the classification select list
+ **************************************** */
+Util.buildClassificationList = async function (classification_id = null) {
+  let data = await invModel.getClassifications()
+  let classificationList =
+    '<select name="classification_id" id="classificationList" required>'
+  classificationList += "<option value=''>Choose a Classification</option>"
+  data.rows.forEach((row) => {
+    classificationList += '<option value="' + row.classification_id + '"'
+    if (
+      classification_id != null &&
+      row.classification_id == classification_id
+    ) {
+      classificationList += " selected "
+    }
+    classificationList += ">" + row.classification_name + "</option>"
+  })
+  classificationList += "</select>"
+  return classificationList
+}
+
+/* ****************************************
+ * Check data — add classification
+ **************************************** */
+Util.checkClassificationData = function (req, res, next) {
+  const { classification_name } = req.body
+  const errors = []
+
+  if (!classification_name || classification_name.trim() === "") {
+    errors.push({ msg: "Classification name is required." })
+  } else if (!/^[a-zA-Z0-9]+$/.test(classification_name.trim())) {
+    errors.push({ msg: "Classification name cannot contain spaces or special characters." })
+  }
+
+  if (errors.length > 0) {
+    return res.status(400).render("inventory/add-classification", {
+      title: "Add Classification",
+      nav: res.locals.nav,
+      errors,
+      classification_name,
+    })
+  }
+  next()
+}
+
+/* ****************************************
+ * Check data — add inventory
+ **************************************** */
+Util.checkInventoryData = function (req, res, next) {
+  const {
+    classification_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+  } = req.body
+  const errors = []
+
+  if (!classification_id) errors.push({ msg: "Please select a classification." })
+  if (!inv_make || inv_make.trim().length < 3) errors.push({ msg: "Make must be at least 3 characters." })
+  if (!inv_model || inv_model.trim().length < 3) errors.push({ msg: "Model must be at least 3 characters." })
+  if (!inv_year || isNaN(inv_year) || inv_year < 1900 || inv_year > 2099)
+    errors.push({ msg: "Year must be a valid 4-digit year between 1900 and 2099." })
+  if (!inv_description || inv_description.trim() === "")
+    errors.push({ msg: "Description is required." })
+  if (!inv_image || inv_image.trim() === "") errors.push({ msg: "Image path is required." })
+  if (!inv_thumbnail || inv_thumbnail.trim() === "") errors.push({ msg: "Thumbnail path is required." })
+  if (!inv_price || isNaN(inv_price) || parseFloat(inv_price) < 0)
+    errors.push({ msg: "Price must be a positive number." })
+  if (!inv_miles || isNaN(inv_miles) || parseInt(inv_miles) < 0)
+    errors.push({ msg: "Miles must be a positive number." })
+  if (!inv_color || inv_color.trim().length < 3) errors.push({ msg: "Color must be at least 3 characters." })
+
+  if (errors.length > 0) {
+    // Build the classification list before re-rendering
+    invModel.getClassifications().then((data) => {
+      let classificationList =
+        '<select name="classification_id" id="classificationList" required>'
+      classificationList += "<option value=''>Choose a Classification</option>"
+      data.rows.forEach((row) => {
+        classificationList += '<option value="' + row.classification_id + '"'
+        if (classification_id != null && row.classification_id == classification_id) {
+          classificationList += " selected "
+        }
+        classificationList += ">" + row.classification_name + "</option>"
+      })
+      classificationList += "</select>"
+
+      return res.status(400).render("inventory/add-inventory", {
+        title: "Add Vehicle",
+        nav: res.locals.nav,
+        errors,
+        classificationList,
+        classification_id,
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_miles,
+        inv_color,
+      })
+    })
+    return
+  }
+  next()
 }
 
 /* ****************************************

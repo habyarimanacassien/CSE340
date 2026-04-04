@@ -1,0 +1,19 @@
+<h1><%= title %></h1>
+
+<%# Display flash messages if any %>
+<%- messages() %>
+
+<div id="management-container">
+  <p>Use the links below to manage inventory and classifications.</p>
+
+  <nav class="management-links">
+    <ul>
+      <li>
+        <a href="/inv/add-classification">Add New Classification</a>
+      </li>
+      <li>
+        <a href="/inv/add-inventory">Add New Inventory Item</a>
+      </li>
+    </ul>
+  </nav>
+</div>

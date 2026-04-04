@@ -731,6 +731,200 @@ footer {
   color: #333;
 }
 
+/******* Login / Account Forms ***************/
+#login-container {
+  max-width: 420px;
+  margin: 40px auto;
+  background-color: #2c3e5b;
+  padding: 36px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+}
+
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#loginForm label {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+#loginForm input[type="email"],
+#loginForm input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+}
+
+#loginForm button[type="submit"] {
+  margin-top: 10px;
+  padding: 12px;
+  background-color: #d4d4d4;
+  color: #1a1a1a;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background-color 0.2s;
+}
+
+#loginForm button[type="submit"]:hover {
+  background-color: #aaaaaa;
+}
+
+.register-link {
+  color: #ffffff;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+.register-link a {
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.flash-message {
+  background-color: #fff3cd;
+  border-left: 4px solid #f0a500;
+  color: #7a5700;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+/******* Register Form ***************/
+#register-container {
+  max-width: 480px;
+  margin: 40px auto;
+  background-color: #2c3e5b;
+  padding: 36px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+}
+
+#registerForm fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+#registerForm legend {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  width: 100%;
+}
+
+#registerForm label {
+  display: block;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+
+#registerForm input[type="text"],
+#registerForm input[type="email"],
+#registerForm input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.password-requirements {
+  display: block;
+  font-size: 0.8rem;
+  color: #a8c4e0;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.password-wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.password-wrapper input {
+  flex: 1;
+}
+
+.show-password-btn {
+  padding: 10px 12px;
+  background-color: #4a6fa5;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+}
+
+.show-password-btn:hover {
+  background-color: #3a5a8a;
+}
+
+#registerForm button[type="submit"] {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background-color: #d4d4d4;
+  color: #1a1a1a;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background-color 0.2s;
+}
+
+#registerForm button[type="submit"]:hover {
+  background-color: #aaaaaa;
+}
+
+/* Flash messages and errors */
+.notice {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.errors {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  list-style-position: inside;
+}
+
 /******** Vehicle Detail - Large Screens (side by side) **********/
 @media screen and (min-width: 768px) {
   .vehicle-detail {
