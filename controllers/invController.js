@@ -47,7 +47,7 @@ invCont.triggerError = async function (req, res, next) {
 }
 
 /* ***************************
- *  Build management view
+ *  Build management view — Task 1
  * ************************** */
 invCont.buildManagement = async function (req, res, next) {
   let nav = await utilities.getNav()
@@ -59,7 +59,7 @@ invCont.buildManagement = async function (req, res, next) {
 }
 
 /* ***************************
- *  Build add-classification view
+ *  Build add-classification view — Task 2
  * ************************** */
 invCont.buildAddClassification = async function (req, res, next) {
   let nav = await utilities.getNav()
@@ -72,7 +72,7 @@ invCont.buildAddClassification = async function (req, res, next) {
 }
 
 /* ***************************
- *  Process add classification
+ *  Process add classification — Task 2
  * ************************** */
 invCont.addClassification = async function (req, res, next) {
   const { classification_name } = req.body
@@ -103,7 +103,7 @@ invCont.addClassification = async function (req, res, next) {
 }
 
 /* ***************************
- *  Build add-inventory view
+ *  Build add-inventory view — Task 3
  * ************************** */
 invCont.buildAddInventory = async function (req, res, next) {
   let nav = await utilities.getNav()
@@ -127,7 +127,7 @@ invCont.buildAddInventory = async function (req, res, next) {
 }
 
 /* ***************************
- *  Process add inventory
+ *  Process add inventory — Task 3
  * ************************** */
 invCont.addInventory = async function (req, res, next) {
   const {

@@ -58,7 +58,7 @@ Util.buildClassificationGrid = async function(data){
 }
 
 /* **************************************
-* Build the vehicle detail view HTML
+* Build the vehicle detail view HTML  (Task 1)
 * ************************************ */
 Util.buildVehicleDetail = function(data) {
   const price = new Intl.NumberFormat('en-US', {
@@ -177,7 +177,7 @@ Util.checkInventoryData = function (req, res, next) {
   if (!inv_color || inv_color.trim().length < 3) errors.push({ msg: "Color must be at least 3 characters." })
 
   if (errors.length > 0) {
-    // Build the classification list before re-rendering
+    // Build the classification list before re-rendering (sticky)
     invModel.getClassifications().then((data) => {
       let classificationList =
         '<select name="classification_id" id="classificationList" required>'
