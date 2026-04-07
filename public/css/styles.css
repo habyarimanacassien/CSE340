@@ -739,6 +739,10 @@ footer {
   padding: 36px 40px;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+  & p {
+    font-size: 1.3rem;
+    color: #f0a500;
+  }
 }
 
 #loginForm {
@@ -815,6 +819,10 @@ footer {
   padding: 36px 40px;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+  & p {
+    font-size: 1.5rem;
+    color: #f0a500;
+  }
 }
 
 #registerForm fieldset {

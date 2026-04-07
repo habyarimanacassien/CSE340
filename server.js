@@ -69,6 +69,7 @@ app.use("/inv", inventoryRoute)
 
 // Account routes
 app.use("/account", accountRoute)
+//app.use("/account", require("./routes/accountRoute"))
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
@@ -89,7 +90,6 @@ app.use(async (err, req, res, next) => {
     nav
   })
 })
-
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
