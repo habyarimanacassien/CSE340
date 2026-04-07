@@ -1,193 +1,176 @@
-<h1><%= title %></h1>
+<h1>
+  <%= title %>
+</h1>
 
-<%# Display flash messages %>
 <%- messages() %>
 
-<%# Display server-side validation errors %>
-<% if (errors) { %>
-  <ul class="errors">
-    <% errors.forEach(error => { %>
-      <li><%= error.msg %></li>
-    <% }) %>
-  </ul>
-<% } %>
+  <% if (errors) { %>
+    <ul class="errors">
+      <% errors.forEach(error=> { %>
+        <li>
+          <%= error.msg %>
+        </li>
+        <% }) %>
+    </ul>
+    <% } %>
 
-<div id="add-inventory-container">
-  <form action="/inv/add-inventory" method="post" id="addInventoryForm" novalidate>
-    <fieldset>
-      <legend>Add a New Vehicle</legend>
+      <div id="add-inventory-container">
+        <form action="/inv/add-inventory" method="post" id="addInventoryForm" novalidate>
+          <fieldset>
+            <legend>Add a New Vehicle</legend>
 
-      <label for="classificationList">Classification:</label>
-      <%- classificationList %>
+            <div class="form-field">
+              <label for="classificationList">Classification</label>
+              <div class="input-wrap select-wrap">
+                <%- classificationList %>
+                  <span class="field-hint">Select the vehicle category</span>
+              </div>
+            </div>
 
-      <label for="inv_make">Make:</label>
-      <input
-        type="text"
-        name="inv_make"
-        id="inv_make"
-        required
-        minlength="3"
-        placeholder="e.g. Toyota"
-        value="<%= typeof inv_make != 'undefined' ? inv_make : '' %>"
-      >
+            <div class="form-field">
+              <label for="inv_make">Make</label>
+              <div class="input-wrap">
+                <input type="text" name="inv_make" id="inv_make" required minlength="3" autocomplete="off"
+                  placeholder="e.g. Toyota" value="<%= typeof inv_make != 'undefined' ? inv_make : '' %>">
+                <span class="field-hint">Minimum 3 characters</span>
+              </div>
+            </div>
 
-      <label for="inv_model">Model:</label>
-      <input
-        type="text"
-        name="inv_model"
-        id="inv_model"
-        required
-        minlength="3"
-        placeholder="e.g. Camry"
-        value="<%= typeof inv_model != 'undefined' ? inv_model : '' %>"
-      >
+            <div class="form-field">
+              <label for="inv_model">Model</label>
+              <div class="input-wrap">
+                <input type="text" name="inv_model" id="inv_model" required minlength="3" autocomplete="off"
+                  placeholder="e.g. Camry" value="<%= typeof inv_model != 'undefined' ? inv_model : '' %>">
+                <span class="field-hint">Minimum 3 characters</span>
+              </div>
+            </div>
 
-      <label for="inv_year">Year:</label>
-      <input
-        type="number"
-        name="inv_year"
-        id="inv_year"
-        required
-        min="1900"
-        max="2099"
-        placeholder="e.g. 2023"
-        value="<%= typeof inv_year != 'undefined' ? inv_year : '' %>"
-      >
+            <div class="form-field">
+              <label for="inv_year">Year</label>
+              <div class="input-wrap">
+                <input type="number" name="inv_year" id="inv_year" required min="1900" max="2099"
+                  placeholder="e.g. 2023" value="<%= typeof inv_year != 'undefined' ? inv_year : '' %>">
+                <span class="field-hint">Between 1900 and 2099</span>
+              </div>
+            </div>
 
-      <label for="inv_description">Description:</label>
-      <textarea
-        name="inv_description"
-        id="inv_description"
-        required
-        placeholder="Describe the vehicle"
-      ><%= typeof inv_description != 'undefined' ? inv_description : '' %></textarea>
+            <div class="form-field">
+              <label for="inv_description">Description</label>
+              <div class="input-wrap">
+                <textarea name="inv_description" id="inv_description" required
+                  placeholder="Describe the vehicle — features, condition, history..."><%= typeof inv_description != 'undefined' ? inv_description : '' %></textarea>
+                <span class="field-hint">Required</span>
+              </div>
+            </div>
 
-      <label for="inv_image">Image Path:</label>
-      <input
-        type="text"
-        name="inv_image"
-        id="inv_image"
-        required
-        placeholder="/images/vehicles/no-image.png"
-        value="<%= typeof inv_image != 'undefined' ? inv_image : '/images/vehicles/no-image.png' %>"
-      >
+            <div class="form-field">
+              <label for="inv_image">Image Path</label>
+              <div class="input-wrap">
+                <input type="text" name="inv_image" id="inv_image" required placeholder="/images/vehicles/no-image.png"
+                  value="<%= typeof inv_image != 'undefined' ? inv_image : '/images/vehicles/no-image.png' %>">
+                <span class="field-hint">Relative path to full-size image</span>
+              </div>
+            </div>
 
-      <label for="inv_thumbnail">Thumbnail Path:</label>
-      <input
-        type="text"
-        name="inv_thumbnail"
-        id="inv_thumbnail"
-        required
-        placeholder="/images/vehicles/no-image-tn.png"
-        value="<%= typeof inv_thumbnail != 'undefined' ? inv_thumbnail : '/images/vehicles/no-image-tn.png' %>"
-      >
+            <div class="form-field">
+              <label for="inv_thumbnail">Thumbnail Path</label>
+              <div class="input-wrap">
+                <input type="text" name="inv_thumbnail" id="inv_thumbnail" required
+                  placeholder="/images/vehicles/no-image-tn.png"
+                  value="<%= typeof inv_thumbnail != 'undefined' ? inv_thumbnail : '/images/vehicles/no-image-tn.png' %>">
+                <span class="field-hint">Relative path to thumbnail image</span>
+              </div>
+            </div>
 
-      <label for="inv_price">Price (USD):</label>
-      <input
-        type="number"
-        name="inv_price"
-        id="inv_price"
-        required
-        min="0"
-        step="0.01"
-        placeholder="e.g. 25000"
-        value="<%= typeof inv_price != 'undefined' ? inv_price : '' %>"
-      >
+            <div class="form-field">
+              <label for="inv_price">Price (USD)</label>
+              <div class="input-wrap">
+                <input type="number" name="inv_price" id="inv_price" required min="0" step="0.01"
+                  placeholder="e.g. 25000" value="<%= typeof inv_price != 'undefined' ? inv_price : '' %>">
+                <span class="field-hint">Whole number or decimal, minimum 0</span>
+              </div>
+            </div>
 
-      <label for="inv_miles">Miles:</label>
-      <input
-        type="number"
-        name="inv_miles"
-        id="inv_miles"
-        required
-        min="0"
-        placeholder="e.g. 15000"
-        value="<%= typeof inv_miles != 'undefined' ? inv_miles : '' %>"
-      >
+            <div class="form-field">
+              <label for="inv_miles">Miles</label>
+              <div class="input-wrap">
+                <input type="number" name="inv_miles" id="inv_miles" required min="0" placeholder="e.g. 15000"
+                  value="<%= typeof inv_miles != 'undefined' ? inv_miles : '' %>">
+                <span class="field-hint">Total odometer reading, minimum 0</span>
+              </div>
+            </div>
 
-      <label for="inv_color">Color:</label>
-      <input
-        type="text"
-        name="inv_color"
-        id="inv_color"
-        required
-        minlength="3"
-        placeholder="e.g. Red"
-        value="<%= typeof inv_color != 'undefined' ? inv_color : '' %>"
-      >
+            <div class="form-field">
+              <label for="inv_color">Color</label>
+              <div class="input-wrap">
+                <input type="text" name="inv_color" id="inv_color" required minlength="3" autocomplete="off"
+                  placeholder="e.g. Midnight Blue" value="<%= typeof inv_color != 'undefined' ? inv_color : '' %>">
+                <span class="field-hint">Minimum 3 characters</span>
+              </div>
+            </div>
 
-      <button type="submit">Add Vehicle</button>
-    </fieldset>
-  </form>
+            <div class="form-actions">
+              <button type="submit" id="submitBtn">Add Vehicle</button>
+              <a href="/inv/" class="form-cancel-link">Cancel</a>
+            </div>
 
-  <p><a href="/inv/">Back to Management</a></p>
-</div>
+          </fieldset>
+        </form>
+      </div>
 
-<script>
-  /* Client-side validation */
-  const form = document.getElementById("addInventoryForm")
-  form.addEventListener("submit", function (e) {
-    let valid = true
-    const errors = []
+      <script>
+        const form = document.getElementById("addInventoryForm")
 
-    const classification_id = document.getElementById("classificationList").value
-    if (!classification_id) {
-      errors.push("Please select a classification.")
-      valid = false
-    }
+        function validateField(el) {
+          const wrap = el.closest(".input-wrap")
+          if (!wrap) return
+          const tag = el.tagName.toLowerCase()
 
-    const fields = [
-      { id: "inv_make",        label: "Make",        min: 3 },
-      { id: "inv_model",       label: "Model",       min: 3 },
-      { id: "inv_color",       label: "Color",       min: 3 },
-    ]
-    fields.forEach(function (f) {
-      const el = document.getElementById(f.id)
-      if (!el.value.trim() || el.value.trim().length < f.min) {
-        errors.push(f.label + " must be at least " + f.min + " characters.")
-        valid = false
-      }
-    })
+          let ok = false
 
-    const year = document.getElementById("inv_year").value
-    if (!year || year < 1900 || year > 2099) {
-      errors.push("Year must be between 1900 and 2099.")
-      valid = false
-    }
+          if (tag === "select") {
+            ok = el.value !== ""
+          } else if (tag === "textarea") {
+            ok = el.value.trim().length > 0
+          } else if (el.type === "number") {
+            const val = parseFloat(el.value)
+            const min = el.hasAttribute("min") ? parseFloat(el.getAttribute("min")) : -Infinity
+            const max = el.hasAttribute("max") ? parseFloat(el.getAttribute("max")) : Infinity
+            ok = !isNaN(val) && val >= min && val <= max
+          } else {
+            const min = el.hasAttribute("minlength") ? parseInt(el.getAttribute("minlength")) : 1
+            ok = el.value.trim().length >= min
+          }
 
-    const price = document.getElementById("inv_price").value
-    if (!price || parseFloat(price) < 0) {
-      errors.push("Price must be a positive number.")
-      valid = false
-    }
+          wrap.classList.toggle("field-valid", ok)
+          wrap.classList.toggle("field-invalid", !ok)
+        }
 
-    const miles = document.getElementById("inv_miles").value
-    if (!miles || parseInt(miles) < 0) {
-      errors.push("Miles must be a positive number.")
-      valid = false
-    }
+        document.querySelectorAll(
+          "#addInventoryForm input, #addInventoryForm textarea, #addInventoryForm select"
+        ).forEach(el => {
+          el.addEventListener("input", () => validateField(el))
+          el.addEventListener("change", () => validateField(el))
+          el.addEventListener("blur", () => {
+            if (el.value !== "") validateField(el)
+          })
+        })
 
-    const desc = document.getElementById("inv_description").value.trim()
-    if (!desc) {
-      errors.push("Description is required.")
-      valid = false
-    }
+        form.addEventListener("submit", function (e) {
+          let valid = true
 
-    const image = document.getElementById("inv_image").value.trim()
-    if (!image) {
-      errors.push("Image path is required.")
-      valid = false
-    }
+          document.querySelectorAll(
+            "#addInventoryForm input[required], #addInventoryForm textarea[required], #addInventoryForm select[required]"
+          ).forEach(el => {
+            validateField(el)
+            const wrap = el.closest(".input-wrap")
+            if (wrap && wrap.classList.contains("field-invalid")) valid = false
+            if (wrap && !wrap.classList.contains("field-valid") && !wrap.classList.contains("field-invalid")) {
+              validateField(el)
+              if (wrap.classList.contains("field-invalid")) valid = false
+            }
+          })
 
-    const thumb = document.getElementById("inv_thumbnail").value.trim()
-    if (!thumb) {
-      errors.push("Thumbnail path is required.")
-      valid = false
-    }
-
-    if (!valid) {
-      e.preventDefault()
-      alert("Please correct the following errors:\n\n" + errors.join("\n"))
-    }
-  })
-</script>
+          if (!valid) e.preventDefault()
+        })
+      </script>
