@@ -61,7 +61,7 @@ Util.buildClassificationGrid = async function(data){
 }
 
 /* **************************************
-* Build the vehicle detail view HTML  (Task 1)
+* Build the vehicle detail view HTML
 * ************************************ */
 Util.buildVehicleDetail = function(data) {
   const price = new Intl.NumberFormat('en-US', {
@@ -257,5 +257,22 @@ Util.checkJWTToken = (req, res, next) => {
     return res.redirect("/account/login")
   }
  }
+
+/* ****************************************
+ * Check Account Type — Employee or Admin only
+ * Protects inventory management routes
+ * ************************************ */
+Util.checkAccountType = (req, res, next) => {
+  if (
+    res.locals.loggedin &&
+    (res.locals.accountData.account_type === "Employee" ||
+      res.locals.accountData.account_type === "Admin")
+  ) {
+    next()
+  } else {
+    req.flash("notice", "You do not have permission to access that area.")
+    return res.redirect("/account/login")
+  }
+}
 
 module.exports = Util

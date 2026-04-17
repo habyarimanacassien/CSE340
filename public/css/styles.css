@@ -1120,3 +1120,216 @@ footer {
     margin-bottom: 60px;
   }
 }
+/******* Account Update View *******/
+#account-update-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.update-section {
+  background: #ffffff;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.update-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #0057a8;
+  border-bottom: 2px solid #0057a8;
+  padding-bottom: 0.4rem;
+}
+
+.password-notice {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.password-requirements {
+  font-size: 0.88rem;
+  color: #555;
+  margin: 0 0 1rem 1.2rem;
+  line-height: 1.8;
+}
+
+.required {
+  color: #c0392b;
+  margin-left: 2px;
+}
+
+.btn-submit {
+  background-color: #0057a8;
+  color: #ffffff;
+  border: none;
+  padding: 10px 24px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 0.75rem;
+}
+
+.btn-submit:hover {
+  background-color: #003d78;
+}
+
+/******* Header tools — multiple links *******/
+#tools {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+#tools a {
+  font-size: 0.88rem;
+  color: #0057a8;
+  text-decoration: none;
+  font-weight: 600;
+  border: 2px solid #0057a8;
+  padding: 6px 14px;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+#tools a:hover {
+  background-color: #0057a8;
+  color: #ffffff;
+}
+
+/******* Account Management View *******/
+#account-management {
+  max-width: 700px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+#account-management h2 {
+  font-size: 1.5rem;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+#account-management h3 {
+  font-size: 1.1rem;
+  color: #0057a8;
+  margin: 1.5rem 0 0.5rem;
+}
+
+#account-management p a {
+  color: #0057a8;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#account-management p a:hover {
+  text-decoration: underline;
+}
+
+/******* Delete Confirm View *******/
+#deleteBtn {
+  background-color: #c0392b;
+  color: #ffffff;
+  border: none;
+  padding: 10px 24px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#deleteBtn:hover {
+  background-color: #922b21;
+}
+
+/******* Notices *******/
+.notice {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  color: #856404;
+  margin-bottom: 1.2rem;
+}
+
+/******* Enhancement — Favorites (Additional Enhancement) *******/
+#favorites-container {
+  max-width: 900px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.favorite-card {
+  background: #ffffff;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.favorite-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.favorite-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.favorite-card-body {
+  padding: 0.8rem 1rem;
+}
+
+.favorite-card-body h3 {
+  font-size: 1rem;
+  margin: 0 0 0.3rem;
+}
+
+.favorite-card-body p {
+  font-size: 0.88rem;
+  color: #555;
+  margin: 0 0 0.5rem;
+}
+
+.btn-remove-fav {
+  background: #c0392b;
+  color: #fff;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: background 0.2s;
+}
+
+.btn-remove-fav:hover {
+  background: #922b21;
+}
+
+.btn-add-fav {
+  background: #0057a8;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+}
+
+.btn-add-fav:hover {
+  background: #003d78;
+}

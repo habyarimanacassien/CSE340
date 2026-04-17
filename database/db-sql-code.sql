@@ -247,3 +247,15 @@ WHERE inv_make = 'GM' AND inv_model = 'Hummer';
 UPDATE public.inventory
 SET inv_image = REPLACE(inv_image, 'images/', 'images/vehicles/'),
 inv_thumbnail = REPLACE(inv_thumbnail, 'images/', 'images/vehicles/');
+-- ============================================================
+-- Additional Enhancement: Saved Favorites Table
+-- Each logged-in client can save vehicles to their favorites list.
+-- Run this in your Render PostgreSQL query tool after deploying.
+-- ============================================================
+CREATE TABLE IF NOT EXISTS public.favorites (
+  favorite_id   SERIAL PRIMARY KEY,
+  account_id    INT NOT NULL REFERENCES public.account(account_id) ON DELETE CASCADE,
+  inv_id        INT NOT NULL REFERENCES public.inventory(inv_id) ON DELETE CASCADE,
+  added_date    TIMESTAMP DEFAULT NOW(),
+  UNIQUE (account_id, inv_id)   -- prevent duplicate favorites
+);

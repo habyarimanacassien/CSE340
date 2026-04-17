@@ -1,0 +1,57 @@
+<h1><%= title %></h1>
+
+<%- messages() %>
+
+<div id="favorites-container">
+
+  <% if (!favorites || favorites.length === 0) { %>
+    <p class="empty-favorites">
+      You have no saved favorites yet. Browse our
+      <a href="/">vehicle inventory</a> and click
+      <strong>"Save to Favorites"</strong> on any vehicle detail page.
+    </p>
+  <% } else { %>
+
+    <p>You have <strong><%= favorites.length %></strong> saved vehicle<%= favorites.length !== 1 ? "s" : "" %>.</p>
+
+    <div class="favorites-grid">
+      <% favorites.forEach(function(fav) { %>
+        <div class="favorite-card">
+          <a href="/inv/detail/<%= fav.inv_id %>">
+            <img
+              src="<%= fav.inv_thumbnail %>"
+              alt="<%= fav.inv_year %> <%= fav.inv_make %> <%= fav.inv_model %>"
+            />
+          </a>
+          <div class="favorite-card-body">
+            <h3>
+              <a href="/inv/detail/<%= fav.inv_id %>">
+                <%= fav.inv_year %> <%= fav.inv_make %> <%= fav.inv_model %>
+              </a>
+            </h3>
+            <p>
+              $<%= new Intl.NumberFormat("en-US").format(fav.inv_price) %> &bull;
+              <%= new Intl.NumberFormat("en-US").format(fav.inv_miles) %> miles &bull;
+              <%= fav.inv_color %>
+            </p>
+            <p class="fav-date">
+              Saved: <%= new Date(fav.added_date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) %>
+            </p>
+
+            <!-- Remove from favorites form -->
+            <form action="/favorites/remove" method="post">
+              <input type="hidden" name="inv_id" value="<%= fav.inv_id %>">
+              <button type="submit" class="btn-remove-fav">&#128465; Remove</button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+  <% } %>
+
+  <p style="margin-top: 1.5rem;">
+    <a href="/account/">&larr; Back to Account Management</a>
+  </p>
+
+</div>

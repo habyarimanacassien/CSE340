@@ -1,3 +1,18 @@
 <h1><%= title %></h1>
 
+<%- messages() %>
+
 <%- detail %>
+
+<% if (locals.loggedin) { %>
+  <div style="max-width: 900px; margin: 1rem auto; padding: 0 1rem;">
+    <form action="/favorites/add" method="post">
+      <input type="hidden" name="inv_id" value="<%= locals.inv_id %>">
+      <button type="submit" class="btn-add-fav">&#9829; Save to Favorites</button>
+    </form>
+    <p style="font-size:0.82rem; color:#555; margin-top:0.3rem;">
+      <a href="/account/favorites">View my saved favorites</a>
+    </p>
+  </div>
+<% } %>
+

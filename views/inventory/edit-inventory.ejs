@@ -1,0 +1,122 @@
+<h1><%= title %></h1>
+
+<%- messages() %>
+
+<% if (errors) { %>
+<ul class="errors">
+<% errors.forEach(error=> { %>
+    <li>
+        <%= error.msg %>
+    </li>
+    <% }) %>
+</ul>
+<% } %>
+
+<div id="add-inventory-container">
+    <form action="/inv/update" method="post" id="updateForm" novalidate>
+        <fieldset>
+            <legend>Edit Vehicle Information</legend>
+
+            <div class="form-field">
+                <label for="classificationList">Classification</label>
+                <div class="input-wrap select-wrap">
+                    <%- classificationSelect %>
+                        <span class="field-hint">Select the vehicle category</span>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="inv_make">Make</label>
+                <div class="input-wrap">
+                    <input type="text" name="inv_make" id="inv_make" required minlength="3"
+                        autocomplete="off" placeholder="e.g. Toyota" value="<%= locals.inv_make %>">
+                    <span class="field-hint">Minimum 3 characters</span>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="inv_model">Model</label>
+                <div class="input-wrap">
+                    <input type="text" name="inv_model" id="inv_model" required minlength="3"
+                        autocomplete="off" placeholder="e.g. Camry" value="<%= locals.inv_model %>">
+                    <span class="field-hint">Minimum 3 characters</span>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="inv_year">Year</label>
+                <div class="input-wrap">
+                    <input type="number" name="inv_year" id="inv_year" required min="1900" max="2099"
+                        placeholder="e.g. 2023" value="<%= locals.inv_year %>">
+                    <span class="field-hint">Between 1900 and 2099</span>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="inv_description">Description</label>
+                <div class="input-wrap">
+                    <textarea name="inv_description" id="inv_description" required
+                        placeholder="Describe the vehicle..."><%= locals.inv_description %></textarea>
+                    <span class="field-hint">Required</span>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="inv_image">Image Path</label>
+                <div class="input-wrap">
+                    <input type="text" name="inv_image" id="inv_image" required
+                        placeholder="/images/vehicles/no-image.png" value="<%= locals.inv_image %>">
+                    <span class="field-hint">Relative path to full-size image</span>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="inv_thumbnail">Thumbnail Path</label>
+                <div class="input-wrap">
+                    <input type="text" name="inv_thumbnail" id="inv_thumbnail" required
+                        placeholder="/images/vehicles/no-image-tn.png" value="<%= locals.inv_thumbnail %>">
+                    <span class="field-hint">Relative path to thumbnail image</span>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="inv_price">Price (USD)</label>
+                <div class="input-wrap">
+                    <input type="number" name="inv_price" id="inv_price" required min="0" step="0.01"
+                        placeholder="e.g. 25000" value="<%= locals.inv_price %>">
+                    <span class="field-hint">Whole number or decimal, minimum 0</span>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="inv_miles">Miles</label>
+                <div class="input-wrap">
+                    <input type="number" name="inv_miles" id="inv_miles" required min="0"
+                        placeholder="e.g. 15000" value="<%= locals.inv_miles %>">
+                    <span class="field-hint">Total odometer reading, minimum 0</span>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="inv_color">Color</label>
+                <div class="input-wrap">
+                    <input type="text" name="inv_color" id="inv_color" required minlength="3"
+                        autocomplete="off" placeholder="e.g. Midnight Blue" value="<%= locals.inv_color %>">
+                    <span class="field-hint">Minimum 3 characters</span>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" id="submitBtn" disabled>Update Vehicle</button>
+                <a href="/inv/" class="form-cancel-link">Cancel</a>
+            </div>
+
+            <%# Hidden field: passes the primary key back with the form %>
+                <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+                    <% } %>>
+
+        </fieldset>
+    </form>
+</div>
+
+<script src="../../js/inv-update.js"></script>
