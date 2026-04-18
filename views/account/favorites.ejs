@@ -5,11 +5,19 @@
 <div id="favorites-container">
 
   <% if (!favorites || favorites.length === 0) { %>
-    <p class="empty-favorites">
-      You have no saved favorites yet. Browse our
-      <a href="/">vehicle inventory</a> and click
-      <strong>"Save to Favorites"</strong> on any vehicle detail page.
-    </p>
+    <div style="background:#f0f7f0; border:1px solid #b7dfc8; border-radius:6px; padding:1.5rem 2rem; margin-top:1rem;">
+      <h2 style="color:#1a7a4a; margin-bottom:0.75rem;">No saved favorites yet</h2>
+      <p>You have not saved any vehicles yet. Here is how to save one:</p>
+      <ol style="margin:0.75rem 0 0 1.2rem; line-height:2;">
+        <li>Go to the <strong>navigation bar</strong> at the top and click any vehicle category (e.g. Sport, SUV, Truck).</li>
+        <li>Click on any vehicle to open its detail page.</li>
+        <li>On the detail page, click the <strong>&#9829; Save to Favorites</strong> button.</li>
+        <li>Come back here to see your saved vehicles.</li>
+      </ol>
+      <p style="margin-top:1rem;">
+        <a href="/" style="color:#0057a8; font-weight:600;">&#8594; Browse vehicles now</a>
+      </p>
+    </div>
   <% } else { %>
 
     <p>You have <strong><%= favorites.length %></strong> saved vehicle<%= favorites.length !== 1 ? "s" : "" %>.</p>

@@ -4,7 +4,7 @@
 
 <% if (errors) { %>
 <ul class="errors">
-<% errors.forEach(error=> { %>
+<% errors.array().forEach(error=> { %>
     <li>
         <%= error.msg %>
     </li>
@@ -120,3 +120,59 @@
 </div>
 
 <script src="../../js/inv-update.js"></script>
+<script>
+  /* ── Client-side validation for the edit-inventory form ── */
+  (function () {
+    const form = document.getElementById("updateForm");
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
+      let valid = true;
+      const errors = [];
+
+      const make  = document.getElementById("inv_make");
+      const model = document.getElementById("inv_model");
+      const year  = document.getElementById("inv_year");
+      const desc  = document.getElementById("inv_description");
+      const img   = document.getElementById("inv_image");
+      const thumb = document.getElementById("inv_thumbnail");
+      const price = document.getElementById("inv_price");
+      const miles = document.getElementById("inv_miles");
+      const color = document.getElementById("inv_color");
+      const cls   = document.getElementById("classificationList");
+
+      if (!make.value.trim() || make.value.trim().length < 3)   { errors.push("Make must be at least 3 characters."); valid = false; }
+      if (!model.value.trim() || model.value.trim().length < 3) { errors.push("Model must be at least 3 characters."); valid = false; }
+
+      const y = parseInt(year.value);
+      if (!year.value || isNaN(y) || y < 1900 || y > 2099) { errors.push("Year must be between 1900 and 2099."); valid = false; }
+      if (!desc.value.trim())  { errors.push("Description is required."); valid = false; }
+      if (!img.value.trim())   { errors.push("Image path is required."); valid = false; }
+      if (!thumb.value.trim()) { errors.push("Thumbnail path is required."); valid = false; }
+
+      const p = parseFloat(price.value);
+      if (price.value === "" || isNaN(p) || p < 0) { errors.push("Price must be a positive number."); valid = false; }
+
+      const m = parseInt(miles.value);
+      if (miles.value === "" || isNaN(m) || m < 0) { errors.push("Miles must be a non-negative number."); valid = false; }
+
+      if (!color.value.trim() || color.value.trim().length < 3) { errors.push("Color must be at least 3 characters."); valid = false; }
+      if (!cls || !cls.value) { errors.push("Please select a classification."); valid = false; }
+
+      if (!valid) {
+        e.preventDefault();
+        let existing = document.querySelector(".client-errors");
+        if (existing) existing.remove();
+        const ul = document.createElement("ul");
+        ul.className = "errors client-errors";
+        errors.forEach(msg => {
+          const li = document.createElement("li");
+          li.textContent = msg;
+          ul.appendChild(li);
+        });
+        form.insertAdjacentElement("beforebegin", ul);
+        ul.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  })();
+</script>

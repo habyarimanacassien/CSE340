@@ -54,7 +54,7 @@ async function removeFavorite(req, res, next) {
     req.flash("notice", "Sorry, could not remove that favorite.")
   }
 
-  res.redirect("/account/favorites")
+  res.redirect("/favorites/")
 }
 
 module.exports = { buildFavoritesView, addFavorite, removeFavorite }

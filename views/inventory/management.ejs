@@ -1,31 +1,38 @@
 <h1><%= title %></h1>
 
 <%# Display flash messages if any %>
-  <%- messages() %>
+<%- messages() %>
 
-    <div id="management-container">
-      <p>Use the links below to manage inventory and classifications.</p>
+<%# Display errors if any %>
+<% if (errors) { %>
+<ul class="errors">
+<% errors.array().forEach(error=> { %>
+    <li><%= error.msg %></li>
+<% }) %>
+</ul>
+<% } %>
 
-      <nav class="management-links">
-        <ul>
-          <li>
-            <a href="/inv/add-classification">Add New Classification</a>
-          </li>
-          <li>
-            <a href="/inv/add-inventory">Add New Vehicle</a>
-          </li>
-        </ul>
-      </nav>
+<div id="account-management">
 
-      <h2>Manage Inventory</h2>
-      <p>Select a classification to see the vehicles that belong to it.</p>
+    <% if (locals.accountData) { %>
+      <% if (accountData.account_type === "Employee" || accountData.account_type === "Admin") { %>
+        <h2>Welcome <%= accountData.account_firstname %></h2>
+      <% } else { %>
+        <p class="account-greeting">Welcome, <%= accountData.account_firstname %></p>
+      <% } %>
+    <% } %>
 
-      <%- classificationSelect %>
+    <%# Update Account Info link — visible to all logged-in users %>
+    <% if (locals.accountData) { %>
+        <p><a href="/update/<%= accountData.account_id %>">Update Account Information</a></p>
+        <p><a href="/favorites/">&#9829; My Saved Favorites</a></p>
+    <% } %>
 
-        <table id="inventoryDisplay"></table>
+    <%# Inventory management — Employee and Admin only %>
+    <% if (locals.accountData &&
+           (accountData.account_type === "Employee" || accountData.account_type === "Admin")) { %>
+        <h3>Inventory Management</h3>
+        <p><a href="/inv/">Manage Inventory</a></p>
+    <% } %>
 
-        <noscript>JavaScript must be enabled to use this page.</noscript>
-
-    </div>
-
-    <script src="../../js/inventory.js"></script>
+</div>

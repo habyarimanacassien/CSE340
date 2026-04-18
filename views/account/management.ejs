@@ -15,13 +15,17 @@
 <div id="account-management">
 
     <% if (locals.accountData) { %>
+      <% if (accountData.account_type === "Employee" || accountData.account_type === "Admin") { %>
         <h2>Welcome <%= accountData.account_firstname %></h2>
+      <% } else { %>
+        <p class="account-greeting">Welcome, <%= accountData.account_firstname %></p>
+      <% } %>
     <% } %>
 
     <%# Update Account Info link — visible to all logged-in users %>
     <% if (locals.accountData) { %>
-        <p><a href="/account/update/<%= accountData.account_id %>">Update Account Information</a></p>
-        <p><a href="/account/favorites">&#9829; My Saved Favorites</a></p>
+        <p><a href="/update/<%= accountData.account_id %>">Update Account Information</a></p>
+        <p><a href="/favorites/">&#9829; My Saved Favorites</a></p>
     <% } %>
 
     <%# Inventory management — Employee and Admin only %>
