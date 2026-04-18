@@ -24,7 +24,7 @@
 
     <%# Update Account Info link — visible to all logged-in users %>
     <% if (locals.accountData) { %>
-        <p><a href="/update/<%= accountData.account_id %>">Update Account Information</a></p>
+        <p><a href="/account/update/<%= accountData.account_id %>">Update Account Information</a></p>
         <p><a href="/favorites/">&#9829; My Saved Favorites</a></p>
     <% } %>
 
