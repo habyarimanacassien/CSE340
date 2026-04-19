@@ -42,17 +42,26 @@
 </div>
 
 <script>
-  /* Client-side validation */
   const form = document.getElementById("addClassificationForm")
   form.addEventListener("submit", function (e) {
     const nameInput = document.getElementById("classification_name")
     const value = nameInput.value.trim()
     const pattern = /^[a-zA-Z0-9]+$/
 
-    if (!pattern.test(value)) {
+    // Validation check first
+    if (!value || !pattern.test(value)) {
       e.preventDefault()
       alert("Classification name cannot contain spaces or special characters.")
       nameInput.focus()
+      return
+    }
+
+    // Confirmation prompt before submitting
+    const confirmed = window.confirm(
+      `Are you sure you want to add the new classification "${value}"?\n\nClick OK to confirm, or Cancel to go back.`
+    )
+    if (!confirmed) {
+      e.preventDefault()
     }
   })
 </script>

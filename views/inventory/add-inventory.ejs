@@ -171,6 +171,23 @@
             }
           })
 
-          if (!valid) e.preventDefault()
+          if (!valid) {
+            e.preventDefault()
+            return
+          }
+
+          // Confirmation prompt before adding the new vehicle
+          const makeEl  = document.getElementById("inv_make")
+          const modelEl = document.getElementById("inv_model")
+          const make  = makeEl  ? makeEl.value.trim()  : "this vehicle"
+          const model = modelEl ? modelEl.value.trim() : ""
+          const name  = (make && model) ? make + " " + model : "this vehicle"
+
+          const confirmed = window.confirm(
+            "Are you sure you want to add \"" + name + "\" to the inventory?\n\nClick OK to confirm, or Cancel to go back."
+          )
+          if (!confirmed) {
+            e.preventDefault()
+          }
         })
       </script>

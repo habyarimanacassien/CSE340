@@ -60,3 +60,22 @@
         </fieldset>
     </form>
 </div>
+
+<script>
+  /* Confirmation prompt before permanent deletion */
+  const deleteForm = document.getElementById("deleteForm")
+  if (deleteForm) {
+    deleteForm.addEventListener("submit", function (e) {
+      const make  = document.getElementById("inv_make")  ? document.getElementById("inv_make").value  : "this vehicle"
+      const model = document.getElementById("inv_model") ? document.getElementById("inv_model").value : ""
+      const name  = (make && model) ? `${make} ${model}` : "this vehicle"
+
+      const confirmed = window.confirm(
+        `⚠️ WARNING: You are about to permanently delete "${name}".\n\nThis action CANNOT be undone. Are you absolutely sure?\n\nClick OK to delete, or Cancel to go back.`
+      )
+      if (!confirmed) {
+        e.preventDefault()
+      }
+    })
+  }
+</script>

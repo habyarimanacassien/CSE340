@@ -147,7 +147,16 @@
       if (!valid) {
         e.preventDefault();
         form.reportValidity();
+        return;
       }
+
+      // Confirmation before saving account changes
+      const fnEl = document.getElementById("account_firstname");
+      const name = fnEl ? fnEl.value.trim() : "your account";
+      const confirmed = window.confirm(
+        "Are you sure you want to update the account information for \"" + name + "\"?\n\nClick OK to save, or Cancel to go back."
+      );
+      if (!confirmed) { e.preventDefault(); }
     });
   })();
 
@@ -164,9 +173,16 @@
         );
         e.preventDefault();
         form.reportValidity();
+        return;
       } else {
         pwd.setCustomValidity("");
       }
+
+      // Confirmation before changing password
+      const ok = window.confirm(
+        "Are you sure you want to change your password?\n\nClick OK to confirm, or Cancel to go back."
+      );
+      if (!ok) { e.preventDefault(); }
     });
   })();
 </script>
