@@ -1335,43 +1335,77 @@ footer {
 }
 
 /* ── Flash messages — remove bullet/dot from express-messages output ── */
+/* express-messages renders two nested levels:                           */
+/*   <ul class="messages">                                               */
+/*     <li class="notice">                                               */
+/*       <ul><li>MESSAGE TEXT</li></ul>   <-- inner ul/li has the bullet */
+/*     </li>                                                             */
+/*   </ul>                                                               */
+
 ul.messages {
-  list-style: none;
+  list-style: none !important;
   margin: 0 0 1rem 0;
   padding: 0;
 }
 
 ul.messages li {
-  list-style: none;
-  padding: 0.85rem 1.1rem;
-  border-radius: 4px;
+  list-style: none !important;
+  padding: 0;
   margin-bottom: 0.5rem;
+  border-radius: 4px;
   font-size: 0.95rem;
   font-weight: 500;
+}
+
+/* ── Inner ul/li — this is where the bullet actually appears ── */
+ul.messages li ul {
+  list-style: none !important;
+  margin: 0;
+  padding: 0.85rem 1.1rem;
+}
+
+ul.messages li ul li {
+  list-style: none !important;
+  padding: 0;
+  margin: 0;
 }
 
 ul.messages li.notice,
 ul.messages li.success {
   background-color: #d4edda;
-  color: #155724;
   border-left: 4px solid #28a745;
+}
+
+ul.messages li.notice ul li,
+ul.messages li.success ul li {
+  color: #155724;
 }
 
 ul.messages li.error,
 ul.messages li.danger {
   background-color: #f8d7da;
-  color: #721c24;
   border-left: 4px solid #dc3545;
+}
+
+ul.messages li.error ul li,
+ul.messages li.danger ul li {
+  color: #721c24;
 }
 
 ul.messages li.info {
   background-color: #d1ecf1;
-  color: #0c5460;
   border-left: 4px solid #17a2b8;
+}
+
+ul.messages li.info ul li {
+  color: #0c5460;
 }
 
 ul.messages li.warning {
   background-color: #fff3cd;
-  color: #856404;
   border-left: 4px solid #ffc107;
+}
+
+ul.messages li.warning ul li {
+  color: #856404;
 }

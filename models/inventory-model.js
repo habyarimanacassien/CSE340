@@ -8,6 +8,22 @@ async function getClassifications(){
 }
 
 /* ***************************
+ *  Get a single classification by its ID (used when no vehicles exist yet)
+ * ************************** */
+async function getClassificationById(classification_id) {
+  try {
+    const data = await pool.query(
+      "SELECT * FROM public.classification WHERE classification_id = $1",
+      [classification_id]
+    )
+    return data.rows[0] || null
+  } catch (error) {
+    console.error("getClassificationById error: " + error)
+    return null
+  }
+}
+
+/* ***************************
  *  Get all inventory items and classification_name by classification_id
  * ************************** */
 async function getInventoryByClassificationId(classification_id) {
@@ -141,6 +157,7 @@ async function deleteInventoryItem(inv_id) {
 
 module.exports = {
   getClassifications,
+  getClassificationById,
   getInventoryByClassificationId,
   getInventoryById,
   addClassification,
